@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity
                 cursor.moveToFirst();
                 while (!cursor.isAfterLast())
                 {
-                    product += cursor.getString(1) + " | ";
+                    product += cursor.getString(1) + "\n";
                     cursor.moveToNext();
                 }
                 cursor.close();
