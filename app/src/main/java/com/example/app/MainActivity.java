@@ -3,16 +3,12 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
-
 import java.io.IOException;
 
 public class MainActivity extends AppCompatActivity
 {
-    Button button;
     TextView textView;
 
     private DatabaseHelper mDBHelper;
@@ -44,26 +40,18 @@ public class MainActivity extends AppCompatActivity
         }
 
         //Найдем компоненты в XML разметке
-        button = (Button) findViewById(R.id.button);
         textView = (TextView) findViewById(R.id.textView);
 
-        //Пропишем обработчик клика кнопки
-        button.setOnClickListener(new View.OnClickListener()
+        // Вывод данных с таблицы "Table_ID_1"
+        String product = "";
+        Cursor cursor = mDb.rawQuery("SELECT * FROM Table_ID_1", null);
+        cursor.moveToFirst();
+        while (!cursor.isAfterLast())
         {
-            @Override
-            public void onClick(View v)
-            {
-                String product = "";
-                Cursor cursor = mDb.rawQuery("SELECT * FROM Table_ID_1", null);
-                cursor.moveToFirst();
-                while (!cursor.isAfterLast())
-                {
-                    product += cursor.getString(1) + "\n";
-                    cursor.moveToNext();
-                }
-                cursor.close();
-                textView.setText(product);
-            }
-        });
+            product += cursor.getString(1) + "\n";
+            cursor.moveToNext();
+        }
+        cursor.close();
+        textView.setText(product);
     }
 }
