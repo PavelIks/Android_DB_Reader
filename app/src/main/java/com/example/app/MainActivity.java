@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity
         }
 
         //Найдем компоненты в XML разметке
-        textView = (TextView) findViewById(R.id.textView);
+        textView = (TextView) findViewById(R.id.TextView_ID1);
 
         // Вывод данных с таблицы "Table_ID_1"
         String product = "";
