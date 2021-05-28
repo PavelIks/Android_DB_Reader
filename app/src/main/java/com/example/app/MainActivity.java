@@ -43,15 +43,15 @@ public class MainActivity extends AppCompatActivity
         textView = (TextView) findViewById(R.id.TextView_ID1);
 
         // Вывод данных с таблицы "Table_ID_1"
-        String product = "";
+        String Table_from_DB_01 = "";
         Cursor cursor = mDb.rawQuery("SELECT * FROM Table_ID_1", null);
         cursor.moveToFirst();
         while (!cursor.isAfterLast())
         {
-            product += cursor.getString(1) + "\n";
+            Table_from_DB_01 += cursor.getString(1) + "\n";
             cursor.moveToNext();
         }
         cursor.close();
-        textView.setText(product);
+        textView.setText(Table_from_DB_01);
     }
 }
